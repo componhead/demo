@@ -3,8 +3,17 @@
 const { test } = require('tap')
 const { build } = require('../helper')
 
-test('example is loaded', async (t) => {
-  const app = await build(t)
+test('example 1 is loaded', async (t) => {
+  const app = build(t)
+
+  const res = await app.inject({
+    url: '/example'
+  })
+  t.equal(res.payload, 'this is an example')
+})
+
+test('example 2 is loaded', async (t) => {
+  const app = build(t)
 
   const res = await app.inject({
     url: '/example'
@@ -16,7 +25,7 @@ test('example is loaded', async (t) => {
 //
 // test('example is loaded', (t) => {
 //   t.plan(2)
-//   const app = await build(t)
+//   const app = build(t)
 //
 //   app.inject({
 //     url: '/example'
